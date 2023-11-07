@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 const FavoriteCities = () => {
     const [favoriteCities, setFavoriteCities] = useState([]);
     const [newCity, setNewCity] = useState('');
-    const [selectedCity, setSelectedCity] = useState(null);
+    const [selectedCities, setSelectedCities] = useState({});
 
   
     useEffect(() => {
@@ -27,7 +27,9 @@ const FavoriteCities = () => {
       const updatedCities = favoriteCities.filter((c) => c !== city);
       setFavoriteCities(updatedCities);
       localStorage.setItem('favoriteCities', JSON.stringify(updatedCities));
-      setSelectedCity(null);
+      const updatedSelectedCities = { ...selectedCities };
+      delete updatedSelectedCities[city];
+      setSelectedCities(updatedSelectedCities);
     };
 
     const fetchWeather = async (city) => {
@@ -38,7 +40,7 @@ const FavoriteCities = () => {
     
           if (response.ok) {
             const data = await response.json();
-            setSelectedCity(data);
+            setSelectedCities({ ...selectedCities, [city]: data });
           }
         } catch (error) {
           console.error('An error occurred:', error);
@@ -58,23 +60,22 @@ const FavoriteCities = () => {
           />
           <button onClick={addFavoriteCity}>Add</button>
         </div>
-        <ul>
-          {favoriteCities.map((city) => (
-            <li key={city} >
-              {city} 
-              <button onClick={() => fetchWeather(city)}>Get Weather</button>
-              <button onClick={() => removeFavoriteCity(city)}>Remove</button>
-            </li>
-          ))}
-        </ul>
-        {selectedCity && (
-        <div>
-          <h3>{selectedCity.name}</h3>
-          <p>Temperature: {selectedCity.main.temp}°C</p>
-          <p>Humidity: {selectedCity.main.humidity}%</p>
-          <p>Wind Speed: {selectedCity.wind.speed} km/h</p>
-        </div>
-      )}
+        <div className="city-cards">
+        {favoriteCities.map((city) => (
+          <div key={city} className="city-card">
+            <h3>{city}</h3>
+            {selectedCities[city] && (
+              <div>
+                <p>Temperature: {selectedCities[city].main.temp}°C</p>
+                <p>Humidity: {selectedCities[city].main.humidity}%</p>
+                <p>Wind Speed: {selectedCities[city].wind.speed} km/h</p>
+              </div>
+            )}
+            <button onClick={() => fetchWeather(city)}>Weather Details</button>
+            <button onClick={() => removeFavoriteCity(city)}>Remove</button>
+          </div>
+        ))}
+      </div>
       </div>
     );
   };
