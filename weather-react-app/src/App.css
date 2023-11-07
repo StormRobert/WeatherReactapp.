@@ -9,6 +9,7 @@
   --light-two: #f9fafb;
   --light-three: #f6f7fb;
   --light-four: #1db99f;
+  --light-five: #007BFF;
 }
 
 /* General styles */
@@ -29,8 +30,8 @@ h1 {
   font-size: 80px;
   text-align: center;
   margin: 0;
-  background: linear-gradient(135deg, #1db99f, #581a70b9), #333;
-  color: #fff;
+  background: linear-gradient(135deg, #1db99f, #581a70b9, #333);
+  color: var(--light-one);
   padding: 10px;
 }
 
@@ -43,6 +44,7 @@ h1 {
   padding: 40px 30px;
   background: linear-gradient(220deg, #1db99f, #581a70b9), #333;
   color: var(--light-four);
+  box-shadow: 0 10px 5px rgba(26, 1, 1, 0.2);
 }
 
 .search {
@@ -102,22 +104,6 @@ h1 {
   margin-top: 10px;
 }
 
-/* Styling the toggle button */
-/* .toggle-button {
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-/* Add a hover effect */
-/* .toggle-button:hover {
-  background-color: #8900b3;
-} */ */
-
 .column {
   display: flex;
   align-items: center;
@@ -139,6 +125,10 @@ h1 {
 } */
 .favorite-cities {
   margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: var(--light-two);
 }
 
 .favorite-cities h2 {
@@ -146,22 +136,29 @@ h1 {
   margin-bottom: 10px;
 }
 
+.favorite-cities div {
+  display: flex;
+  align-items: center;
+}
+
 .favorite-cities input {
-  height: 30px;
+  flex: 0.23;
+  height: 36px;
   outline: 0;
-  border: 1px solid var(--dark-two);
+  border: 1px solid var(--dark-three);
   padding: 5px 10px;
   border-radius: 5px;
   margin-right: 10px;
 }
 
 .favorite-cities button {
-  background-color: var(--main-color);
-  color: #fff;
+  background: linear-gradient(135deg, #007BFF, #1db99f);
+  color: var(--light-one);
   border: none;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 5px 16px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .favorite-cities ul {
@@ -169,34 +166,48 @@ h1 {
   padding: 0;
 }
 
-.favorite-cities li {
+.favorite-cities .city-cards {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 5px;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
-.favorite-cities li button {
-  background-color: #ff6464;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 3px 6px;
-  cursor: pointer;
+.favorite-cities .city-card {
+  border: 1px solid #cecccc;
+  border-radius: 10px;
+  background-color: var(--light-one);
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 6px 10px rgba(26, 1, 1, 0.2);
+  text-align: center;
+  width: calc(33.33% - 20px);
 }
 
-/* Add a hover effect for favorite cities */
-.favorite-cities li:hover {
-  background-color: var(--light-three);
+.favorite-cities .city-card h3 {
+  font-size: 18px;
 }
 
-.favorite-cities h3 {
-  font-size: 20px;
+.favorite-cities .city-card div {
   margin-top: 10px;
-  font-weight: 500;
 }
 
-.favorite-cities p {
+.favorite-cities .city-card p {
   font-size: 16px;
   margin: 5px 0;
 }
+
+.favorite-cities .city-card button {
+  margin: 10px;
+  background-color: #007BFF;
+  color: #fff;
+  
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.favorite-cities .city-card button:hover {
+  background-color: var(--main-color);
+}
+
