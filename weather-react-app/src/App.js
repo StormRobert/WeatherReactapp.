@@ -25,7 +25,7 @@ function App() {
   };
 
   useEffect(() => {
-    searchWeather(''); // Default city
+    searchWeather(''); //Default seting no city displayed
   }, []);
   
   return (

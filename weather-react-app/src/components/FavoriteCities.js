@@ -76,7 +76,7 @@ const FavoriteCities = () => {
               </div>
             )}
             <button onClick={() => toggleWeather(city)}>
-              {selectedCities[city] ? 'Hide Weather' : ' Details'}
+              {selectedCities[city] ? 'Hide' : ' Details'}
             </button>
             <button onClick={() => removeFavoriteCity(city)}>Remove</button>
           </div>

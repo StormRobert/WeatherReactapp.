@@ -82,12 +82,13 @@ h1 {
 }
 
 .weather-icon {
-  width: 140px;
+  width: 120px;
 }
 
 .weather h2 {
   font-size: 80px;
   font-weight: 500;
+
 }
 
 .weather h3 {
@@ -129,16 +130,12 @@ h1 {
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: var(--light-two);
+  background: linear-gradient(220deg, #1db99f, #581a70b9, #333)
 }
 
 .favorite-cities h2 {
   font-size: 24px;
   margin-bottom: 10px;
-}
-
-.favorite-cities div {
-  display: flex;
-  align-items: center;
 }
 
 .favorite-cities input {
@@ -152,7 +149,7 @@ h1 {
 }
 
 .favorite-cities button {
-  background: linear-gradient(135deg, #007BFF, #1db99f);
+  background-color: var(--light-five);
   color: var(--light-one);
   border: none;
   border-radius: 5px;
@@ -161,15 +158,11 @@ h1 {
   transition: all 0.3s ease;
 }
 
-.favorite-cities ul {
-  list-style: none;
-  padding: 0;
-}
-
 .favorite-cities .city-cards {
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;
+ 
 }
 
 .favorite-cities .city-card {
@@ -181,6 +174,8 @@ h1 {
   box-shadow: 0 6px 10px rgba(26, 1, 1, 0.2);
   text-align: center;
   width: calc(33.33% - 20px);
+  overflow: hidden;
+
 }
 
 .favorite-cities .city-card h3 {
@@ -188,6 +183,8 @@ h1 {
 }
 
 .favorite-cities .city-card div {
+  max-height: 100px; 
+  overflow: auto; /* Enable the scrolling for overflowing content  */
   margin-top: 10px;
 }
 
