@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Search from './components/Search';
 import Weather from './components/Weather';
+import './App.css'
 import FavoriteCities from './components/FavoriteCities';
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
-  const [unit, setUnit] = useState('metric'); // Default to Celsius
 
   const apiKey = 'a48cfa75630ececfa09f7d5f9fd5cf6b';
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?&q=`;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?&units=metric&q=`;
 
   const searchWeather = async (city) => {
     try {
-      const response = await fetch(`${apiUrl}${city}&appid=${apiKey}&units=${unit}`);
+      const response = await fetch(`${apiUrl}${city}&appid=${apiKey}`);
       if (response.ok) {
         const data = await response.json();
         setWeatherData(data);
@@ -27,20 +27,19 @@ function App() {
   useEffect(() => {
     searchWeather('Kisii'); // Default city
   }, []);
-
-  const toggleUnits = () => {
-    setUnit(unit === 'metric' ? 'imperial' : 'metric');
-  };
   
   return (
     <div>
       <h1>Weather Today</h1>
       <div className="card">
-        <Search />
-        
+        <Search onSearch={searchWeather} />
+        {weatherData && <Weather weatherData={weatherData}  />}
      </div>
-    </div>   
+     <FavoriteCities/>
+    </div>
   );
 }
+ 
+  
 
 export default App;
