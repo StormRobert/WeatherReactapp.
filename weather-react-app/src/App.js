@@ -25,7 +25,7 @@ function App() {
   };
 
   useEffect(() => {
-    searchWeather('Kisii'); // Default city
+    searchWeather(''); // Default city
   }, []);
   
   return (

@@ -18,6 +18,7 @@ const FavoriteCities = () => {
         const updatedCities = [...favoriteCities, newCity];
         setFavoriteCities(updatedCities);
         localStorage.setItem('favoriteCities', JSON.stringify(updatedCities));
+        fetchWeather(newCity);
       }
       setNewCity('');
     };
@@ -26,6 +27,7 @@ const FavoriteCities = () => {
       const updatedCities = favoriteCities.filter((c) => c !== city);
       setFavoriteCities(updatedCities);
       localStorage.setItem('favoriteCities', JSON.stringify(updatedCities));
+      setSelectedCity(null);
     };
 
     const fetchWeather = async (city) => {
@@ -58,8 +60,10 @@ const FavoriteCities = () => {
         </div>
         <ul>
           {favoriteCities.map((city) => (
-            <li key={city} onClick={() => fetchWeather(city)}>
-              {city} <button onClick={() => removeFavoriteCity(city)}>Remove</button>
+            <li key={city} >
+              {city} 
+              <button onClick={() => fetchWeather(city)}>Get Weather</button>
+              <button onClick={() => removeFavoriteCity(city)}>Remove</button>
             </li>
           ))}
         </ul>

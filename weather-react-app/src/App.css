@@ -189,3 +189,14 @@ h1 {
 .favorite-cities li:hover {
   background-color: var(--light-three);
 }
+
+.favorite-cities h3 {
+  font-size: 20px;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.favorite-cities p {
+  font-size: 16px;
+  margin: 5px 0;
+}
