@@ -130,7 +130,7 @@ h1 {
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: var(--light-two);
-  background: linear-gradient(220deg, #1db99f, #581a70b9, #333)
+  
 }
 
 .favorite-cities h2 {
@@ -162,7 +162,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;
- 
+  background: linear-gradient(220deg, #1db99f, #581a70b9, #333)
 }
 
 .favorite-cities .city-card {
