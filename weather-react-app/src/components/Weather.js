@@ -1,38 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import humidity from '../images/humidity.png'
 import wind from '../images/wind.png'
 
-const Weather = () => {
-  const { city } = useParams();
-  const [weatherData, setWeatherData] = useState(null);
-
-  useEffect(() => {
-    const apiKey = 'a48cfa75630ececfa09f7d5f9fd5cf6b';
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?&q=${city}&appid=${apiKey}&units=metric`;
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch(apiUrl);
-    
-        if (response.ok) {
-          const data = await response.json();
-          setWeatherData(data);
-        } else {
-          console.error(`Failed to fetch weather data: ${response.status} - ${response.statusText}`);
-        }
-      } catch (error) {
-        console.error('An error occurred:', error);
-      }
-    };
-
-    fetchData();
-  }, [city]);
-
-  if (!weatherData) {
-    return <div>Loading...</div>;
-  }
-
+const Weather = ({ weatherData }) => {
+  
     return (
       <div className="current-weather">
         <img

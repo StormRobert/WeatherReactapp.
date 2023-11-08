@@ -1,57 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import { useRoutes, Outlet } from 'react-router-dom';
 import Search from './components/Search';
 import Weather from './components/Weather';
 import './App.css'
 import FavoriteCities from './components/FavoriteCities';
-
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
 
-  useEffect(() => {
-    searchWeather(''); // Default setting, no city displayed
-  }, []);
+  const apiKey = 'a48cfa75630ececfa09f7d5f9fd5cf6b';
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?&units=metric&q=`;
 
-  
   const searchWeather = async (city) => {
     try {
-      const apiKey = 'a48cfa75630ececfa09f7d5f9fd5cf6b';
-      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
-      const response = await fetch(apiUrl);
-
+      const response = await fetch(`${apiUrl}${city}&appid=${apiKey}`);
       if (response.ok) {
         const data = await response.json();
         setWeatherData(data);
       } else {
-        console.error(`Failed to fetch data: ${response.status} - ${response.statusText}`);
+        console.error('Failed to fetch data');
       }
     } catch (error) {
       console.error('An error occurred:', error);
     }
   };
 
-  const routes = useRoutes([
-    { path: '/', element: <Search onSearch={searchWeather} /> },
-    {
-      path: '/',
-      element: (
-        <>
-          <FavoriteCities />
-          <Outlet /> {/* This will render the child route */}
-        </>
-      ),
-      children: [{ path: 'weather/:city', element: <Weather /> }],
-    },
-  ]);
-
+  useEffect(() => {
+    searchWeather(''); //Default seting no city displayed
+  }, []);
+  
   return (
     <div>
       <h1>Weather Today</h1>
-      {routes}
+      <div className="card">
+        <Search onSearch={searchWeather} />
+        {weatherData && <Weather weatherData={weatherData}  />}
+     </div>
+     <FavoriteCities/>
     </div>
   );
 }
+ 
+  
 
 export default App;

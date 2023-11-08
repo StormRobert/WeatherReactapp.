@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
 import searchIcon from '../images/searchIcon.png'
-import { useNavigate } from 'react-router-dom';
 
-const Search = () => {
-  const navigate = useNavigate();
+const Search = ({ onSearch }) => {
   const [city, setCity] = useState('');
 
   const handleSearch = () => {
-    // onSearch(city);
-    navigate(`/weather/${city}`);
+    onSearch(city);
   };
-
-  
-  
 
   return (
     <div className="search">
