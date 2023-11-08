@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Outlet } from 'react-router-dom';
 import Search from './components/Search';
 import Weather from './components/Weather';
 import './App.css'
 import FavoriteCities from './components/FavoriteCities';
+
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
@@ -29,14 +31,17 @@ function App() {
   }, []);
   
   return (
-    <div>
-      <h1>Weather Today</h1>
-      <div className="card">
-        <Search onSearch={searchWeather} />
-        {weatherData && <Weather weatherData={weatherData}  />}
-     </div>
-     <FavoriteCities/>
-    </div>
+    <Router>
+      <div>
+        <h1>Weather Today</h1>
+        <Route path="/" element={<div className="card">
+          <Search onSearch={searchWeather} />
+          {weatherData && <Weather weatherData={weatherData} />}
+          <Outlet />
+        </div>} />
+        <Route path="/favorite-cities" element={<FavoriteCities />} />
+      </div>
+    </Router>
   );
 }
  

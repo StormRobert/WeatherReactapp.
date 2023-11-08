@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 
 const FavoriteCities = () => {
   const [favoriteCities, setFavoriteCities] = useState([]);
@@ -79,6 +80,7 @@ const FavoriteCities = () => {
               {selectedCities[city] ? 'Hide' : ' Details'}
             </button>
             <button onClick={() => removeFavoriteCity(city)}>Remove</button>
+            <Link to={`/weather/${city}`}>View Weather</Link>
           </div>
         ))}
       </div>

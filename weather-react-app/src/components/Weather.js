@@ -1,8 +1,11 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import humidity from '../images/humidity.png'
 import wind from '../images/wind.png'
 
 const Weather = ({ weatherData }) => {
+  const { city } = useParams();
+  const [weatherData, setWeatherData] = useState(null);
     return (
       <div className="current-weather">
         <img
