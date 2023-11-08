@@ -4,6 +4,7 @@ import wind from '../images/wind.png'
 
 const Weather = ({ weatherData }) => {
   
+
     return (
       <div className="current-weather">
         <img

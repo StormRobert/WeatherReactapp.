@@ -33,25 +33,25 @@ const FavoriteCities = () => {
   };
 
   const toggleWeather = async (city) => {
-    if (selectedCities[city]) {
-      const updatedSelectedCities = { ...selectedCities };
-      delete updatedSelectedCities[city];
-      setSelectedCities(updatedSelectedCities);
-    } else {
-      try {
-        const apiKey = 'a48cfa75630ececfa09f7d5f9fd5cf6b';
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?&q=${city}&appid=${apiKey}&units=metric`;
-        const response = await fetch(apiUrl);
-  
-        if (response.ok) {
-          const data = await response.json();
-          setSelectedCities({ ...selectedCities, [city]: data });
-        }
-      } catch (error) {
-        console.error('An error occurred:', error);
+  if (selectedCities[city]) {
+    const updatedSelectedCities = { ...selectedCities };
+    delete updatedSelectedCities[city];
+    setSelectedCities(updatedSelectedCities);
+  } else {
+    try {
+      const apiKey = 'a48cfa75630ececfa09f7d5f9fd5cf6b';
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?&units=metric&q=${city}&appid=${apiKey}`;
+      const response = await fetch(apiUrl);
+
+      if (response.ok) {
+        const data = await response.json();
+        setSelectedCities({ ...selectedCities, [city]: data });
       }
+    } catch (error) {
+      console.error('An error occurred:', error);
     }
-  };
+  }
+};
 
   return (
     <div className="favorite-cities">

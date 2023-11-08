@@ -3,8 +3,8 @@ import Search from './components/Search';
 import Weather from './components/Weather';
 import './App.css'
 import FavoriteCities from './components/FavoriteCities';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import { Route, Routes } from 'react-router-dom';
+import CityWeatherDetails from './components/CityWeather';
 function App() {
   const [weatherData, setWeatherData] = useState(null);
 
@@ -13,6 +13,12 @@ function App() {
 
   const searchWeather = async (city) => {
     try {
+      if (!city) {
+        // Handle empty city name 
+        console.error('City name is empty');
+        return;
+      }
+
       const response = await fetch(`${apiUrl}${city}&appid=${apiKey}`);
       if (response.ok) {
         const data = await response.json();
@@ -27,7 +33,7 @@ function App() {
 
   useEffect(() => {
     searchWeather(''); //Default seting no city displayed
-  }, []);
+  }, [searchWeather]);
   
   return (
     <div>
@@ -37,6 +43,10 @@ function App() {
         {weatherData && <Weather weatherData={weatherData}  />}
      </div>
      <FavoriteCities/>
+     <Routes>
+        {/* Define a route for displaying weather details */}
+        <Route path="/weather/:city" element={<CityWeatherDetails />} />
+      </Routes>
     </div>
   );
 }
