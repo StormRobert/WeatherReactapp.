@@ -208,3 +208,8 @@ h1 {
   background-color: var(--main-color);
 }
 
+.weather-info {
+  font-size: 16px;
+  margin: 5px 0;
+  color: var(--dark-three);
+}

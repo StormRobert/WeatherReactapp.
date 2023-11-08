@@ -31,15 +31,19 @@ const CityWeatherDetails = () => {
 
   return (
     <div>
-      <h2>Weather Details for {city}</h2>
-      {weatherData && (
-        <div>
-        <p>Temperature: {Math.round(weatherData.main.temp)}°C</p>
-        <p>Humidity: {weatherData.main.humidity}%</p>
-        <p>Wind Speed: {weatherData.wind.speed} km/h</p>
+    {city && (
+      <div>
+        <h2>Weather Details for {city}</h2>
+        {weatherData && (
+          <div>
+            <p className="weather-info">Temperature: {Math.round(weatherData.main.temp)}°C</p>
+            <p className="weather-info">Humidity: {weatherData.main.humidity}%</p>
+            <p className="weather-info">Wind Speed: {weatherData.wind.speed} km/h</p>
+          </div>
+        )}
       </div>
-      )}
-    </div>
+    )}
+  </div>
   );
 };
 

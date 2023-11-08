@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const FavoriteCities = () => {
   const [favoriteCities, setFavoriteCities] = useState([]);
   const [newCity, setNewCity] = useState('');
   const [selectedCities, setSelectedCities] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedCities = JSON.parse(localStorage.getItem('favoriteCities'));
@@ -30,6 +31,8 @@ const FavoriteCities = () => {
     const updatedSelectedCities = { ...selectedCities };
     delete updatedSelectedCities[city];
     setSelectedCities(updatedSelectedCities);
+    navigate('/');
+    
   };
 
   const toggleWeather = async (city) => {
