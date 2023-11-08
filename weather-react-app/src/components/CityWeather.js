@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 
-const CityWeatherDetails = () => {
+function CityWeatherDetails () {
   const { city } = useParams();
 
   const [weatherData, setWeatherData] = useState(null);

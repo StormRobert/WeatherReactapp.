@@ -44,7 +44,6 @@ function App() {
      </div>
      <FavoriteCities/>
      <Routes>
-        {/* Define a route for displaying weather details */}
         <Route path="/weather/:city" element={<CityWeatherDetails />} />
       </Routes>
     </div>

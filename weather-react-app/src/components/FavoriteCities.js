@@ -14,7 +14,7 @@ const FavoriteCities = () => {
     }
   }, []);
 
-  const addFavoriteCity = () => {
+  function addFavoriteCity() {
     if (newCity && !favoriteCities.includes(newCity)) {
       const updatedCities = [...favoriteCities, newCity];
       setFavoriteCities(updatedCities);
@@ -24,7 +24,7 @@ const FavoriteCities = () => {
     setNewCity('');
   };
 
-  const removeFavoriteCity = (city) => {
+  function removeFavoriteCity(city){
     const updatedCities = favoriteCities.filter((c) => c !== city);
     setFavoriteCities(updatedCities);
     localStorage.setItem('favoriteCities', JSON.stringify(updatedCities));

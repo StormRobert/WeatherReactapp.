@@ -4,7 +4,7 @@ import searchIcon from '../images/searchIcon.png'
 const Search = ({ onSearch }) => {
   const [city, setCity] = useState('');
 
-  const handleSearch = () => {
+  function handleSearch () {
     onSearch(city);
   };
 
