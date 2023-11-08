@@ -14,12 +14,12 @@ const Weather = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(apiUrl);
-
+    
         if (response.ok) {
           const data = await response.json();
           setWeatherData(data);
         } else {
-          console.error('Failed to fetch weather data');
+          console.error(`Failed to fetch weather data: ${response.status} - ${response.statusText}`);
         }
       } catch (error) {
         console.error('An error occurred:', error);
