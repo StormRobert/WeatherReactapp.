@@ -36,6 +36,8 @@ Developer by Storm Robert .
 #### The link
 https://weather-reactapp-orpin.vercel.app/
 
+the prior weather project before the update URL: https://stormrobert.github.io/WeatherAapp.github.io/
+
 
 
 
